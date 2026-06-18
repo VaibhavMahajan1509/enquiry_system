@@ -92,6 +92,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import API from "./api/api";
 
 const AuthForm = () => {
   const [isSignup, setIsSignup] = useState(true);
@@ -104,18 +105,26 @@ const AuthForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      const url = isSignup
-        ? "http://localhost:5000/auth/signup"
-        : "http://localhost:5000/auth/login"; 
-
       const payload = isSignup
-        ? { name: form.name, email: form.email, password: form.password }
-        : { email: form.email, password: form.password };
+        ? {
+            name: form.name,
+            email: form.email,
+            password: form.password,
+          }
+        : {
+            email: form.email,
+            password: form.password,
+          };
 
-      const res = await axios.post(url, payload);
+      const res = await API.post(
+        isSignup ? "/auth/signup" : "/auth/login",
+        payload
+      );
+
       setMsg(res.data.msg);
-      setForm({ name: "", email: "", password: "" }); // Clear fields
+      setForm({ name: "", email: "", password: "" });
     } catch (err) {
       setMsg(err.response?.data?.msg || "Error occurred");
     }

@@ -34,7 +34,7 @@ import axios from "axios";
 
 // Create Axios instance for dashboard API
 const API = axios.create({
-  baseURL: "http://localhost:5000", // backend base URL
+  baseURL:import.meta.env.VITE_API_URL, // backend base URL
   headers: { "Content-Type": "application/json" },
 });
 
