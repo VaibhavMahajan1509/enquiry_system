@@ -74,12 +74,26 @@ const app = express();
 // Connect to MongoDB
 connectDB();
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://enquiry-system-78pb6shhf-vaibhav-mahajans-projects-15234d78.vercel.app"
+];
+
 // Middleware
 app.use(cors({
-  origin: process.env.CLIENT_URL || "*",
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+
+    return callback(new Error("Not allowed by CORS"));
+  },
   methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
