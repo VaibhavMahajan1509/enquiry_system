@@ -1,40 +1,8 @@
-// import axios from "axios";
-
-// // Create an axios instance
-// const API = axios.create({
-//   baseURL: "http://localhost:5000", // backend ka URL
-// });
-
-// // Add token automatically to all requests if logged in
-// API.interceptors.request.use((config) => {
-//   const token = localStorage.getItem("token");
-//   if (token) {
-//     config.headers.Authorization = `Bearer ${token}`;
-//   }
-//   return config;
-// });
-
-
-// export default API;
-
-
-// import axios from "axios";
-
-// const API = axios.create({
-//   baseURL: "http://localhost:5000",
-//   headers: { "Content-Type": "application/json" }
-// });
-
-// export default API;
-
-
-
-
 import axios from "axios";
 
 // Create Axios instance for dashboard API
 const API = axios.create({
-  baseURL:import.meta.env.VITE_API_URL, // backend base URL
+  baseURL: import.meta.env.VITE_API_URL, // backend base URL
   headers: { "Content-Type": "application/json" },
 });
 
@@ -75,3 +43,37 @@ export const updateDataAPI = (module, id, data) =>
 
 export const deleteDataAPI = (module, id) => 
   API.delete(`/dashboard/${module}/${id}`);
+
+
+// import axios from "axios";
+
+// // Create an axios instance
+// const API = axios.create({
+//   baseURL: "http://localhost:5000", // backend ka URL
+// });
+
+// // Add token automatically to all requests if logged in
+// API.interceptors.request.use((config) => {
+//   const token = localStorage.getItem("token");
+//   if (token) {
+//     config.headers.Authorization = `Bearer ${token}`;
+//   }
+//   return config;
+// });
+
+
+// export default API;
+
+
+// import axios from "axios";
+
+// const API = axios.create({
+//   baseURL: "http://localhost:5000",
+//   headers: { "Content-Type": "application/json" }
+// });
+
+// export default API;
+
+
+
+

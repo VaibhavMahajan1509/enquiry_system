@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import API from "../component/API";
+import API from "./api/api";
 import { Link, useNavigate } from "react-router-dom";
 
 const Login = ({ onClose }) => {

@@ -63,7 +63,8 @@ const RegistrationForm = () => {
     setLoading(true);
 
     try {
-      await axios.post("http://localhost:5000/registration/register", form);
+      // ✅ Use your env variable
+await axios.post(`${import.meta.env.VITE_API_URL}/registration/register`, form);
 
       toast.success("Registration Successful!");
 
