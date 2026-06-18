@@ -76,7 +76,7 @@ connectDB();
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://enquiry-system-78pb6shhf-vaibhav-mahajans-projects-15234d78.vercel.app"
+  "https://enquiry-system-psi.vercel.app"
 ];
 
 // Middleware
