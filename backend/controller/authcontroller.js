@@ -57,9 +57,9 @@ const verifyEmail = async (req, res) => {
     const user = await User.findOne({ email: decoded.email });
     if (!user) return res.status(400).json({ msg: "Invalid token" });
 
-    if (user.isVerified) {
-      return res.send("<h2>Email already verified. You can login.</h2>");
-    }
+    // if (user.isVerified) {
+    //   return res.send("<h2>Email already verified. You can login.</h2>");
+    // }
 
     user.isVerified = true;
     await user.save();
