@@ -25,21 +25,21 @@ const signup = async (req, res) => {
     const user = new User({ name, email, password: hashedPassword });
     await user.save();
 
-    // Email verification token
-    const token = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: "1d" });
-    const link = `${process.env.BACKEND_URL}/auth/verify/${token}`;
+    // // Email verification token
+    // const token = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: "1d" });
+    // const link = `${process.env.BACKEND_URL}/auth/verify/${token}`;
 
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: email,
-      subject: "Verify your email",
-      html: `
-        <h3>Hello ${name},</h3>
-        <p>Please click the link below to verify your email:</p>
-        <a href="${link}" style="padding:10px 20px;background:#4f46e5;color:white;text-decoration:none;border-radius:5px;">Verify Email</a>
-        <p>This link expires in 24 hours.</p>
-      `,
-    });
+    // await transporter.sendMail({
+    //   from: process.env.EMAIL_USER,
+    //   to: email,
+    //   subject: "Verify your email",
+    //   html: `
+    //     <h3>Hello ${name},</h3>
+    //     <p>Please click the link below to verify your email:</p>
+    //     <a href="${link}" style="padding:10px 20px;background:#4f46e5;color:white;text-decoration:none;border-radius:5px;">Verify Email</a>
+    //     <p>This link expires in 24 hours.</p>
+    //   `,
+    // });
 
     res.status(201).json({ msg: "Signup successful! Check your email to verify your account." });
   } catch (err) {
